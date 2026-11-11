@@ -1,0 +1,1 @@
+# MintRAG sample\n\nThis markdown file demonstrates the sample document used for ingestion tests.\nIt contains a short introduction to the project and sample retrieval content.\n

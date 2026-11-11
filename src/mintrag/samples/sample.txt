@@ -1,0 +1,1 @@
+MintRAG sample text file.\n\nThis plaintext example is intentionally short and readable for testing chunking, retrieval, and ingestion flows.\n
