@@ -1,9 +1,9 @@
 
-import hashlib, json
+import hashlib
+import json
 
-from mintrag.domain.models import Chunk, Document
-from mintrag.ingestions.config import ChunkingConfig
-from mintrag.application.ports import Chunker
+from mintrag.config import ChunkingConfig
+from mintrag.models import Chunk, Document
 
 
 class CharacterChunker:

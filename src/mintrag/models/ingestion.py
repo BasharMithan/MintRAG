@@ -1,8 +1,4 @@
-from re import S
-from typing import Self
-
-from pydantic import BaseModel, ConfigDict, Field, model_validator
-
+from pydantic import BaseModel
 
 
 class Chunk(BaseModel):
@@ -15,19 +11,12 @@ class Chunk(BaseModel):
     end: int
 
 
-
 class Document(BaseModel):
     id: str
     text: str
     source: str
 
 
-
-
 class IngestionResult(BaseModel):
     document: Document
     chunks: tuple[Chunk, ...]
-
-
-
-

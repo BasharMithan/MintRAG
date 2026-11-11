@@ -1,6 +1,5 @@
-from pathlib import Path
-from mintrag.domain.models.ingestion import Document, Chunk, IngestionResult
-from mintrag.application.ports import DocumentLoader, Chunker
+from mintrag.application.ports import Chunker, DocumentLoader
+from mintrag.models.ingestion import Chunk, Document, IngestionResult
 
 
 class Ingestion:
@@ -14,4 +13,3 @@ class Ingestion:
         document: Document = self.loader.load(source)
         chunks: tuple[Chunk, ...] = self.chunker.split(document=document)
         return IngestionResult(document=document, chunks=chunks)
-

@@ -1,14 +1,15 @@
-import hashlib, json
+import hashlib
+import json
 from pathlib import Path
 
-from mintrag.domain.models import Document
+from mintrag.models import Document
 
 
 class TextDocumentLoader:
 
     def load(self, source: str) -> Document:
 
-        supportedExtensions: list[str] = [".txt", ".pdf", ".md"]
+        supportedExtensions: list[str] = [".txt", ".pdf", ".md", ".py"]
 
         path = Path(source).expanduser().resolve(strict=True)
 
@@ -37,5 +38,4 @@ if __name__ == "__main__":
     document = loader.load(source=path)
     
     pprint(document)
-
 
