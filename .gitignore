@@ -1,0 +1,8 @@
+.pytest_cache/
+.ruff_cache/
+.venv/
+docs/
+*__pycache__/
+*.pyc
+*.pyo
+.vscode/
