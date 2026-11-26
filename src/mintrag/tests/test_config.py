@@ -12,10 +12,14 @@ def testChunkingConfigAcceptsValidValues():
 
 
 def testChunkingConfigRejectsOverlapGreaterThanOrEqualToChunkSize():
-    with pytest.raises(ValueError, match="Overlap must be smaller that the size of the chunk"):
+    with pytest.raises(
+        ValueError, match="Overlap must be smaller that the size of the chunk"
+    ):
         ChunkingConfig(chunkSize=10, overlap=10)
 
-    with pytest.raises(ValueError, match="Overlap must be smaller that the size of the chunk"):
+    with pytest.raises(
+        ValueError, match="Overlap must be smaller that the size of the chunk"
+    ):
         ChunkingConfig(chunkSize=10, overlap=11)
 
 

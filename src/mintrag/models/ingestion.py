@@ -16,6 +16,9 @@ class Document(BaseModel):
     text: str
     source: str
 
+    chunks: tuple[Chunk, ...] | None = None
+    embeddings: tuple[float, ...] | None = None
+
 
 class IngestionResult(BaseModel):
     document: Document

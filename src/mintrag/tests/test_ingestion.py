@@ -47,7 +47,9 @@ def testIngestionLoadsDocumentAndSplitsIntoChunks():
         ),
     )
 
-    result = Ingestion(loader=FakeLoader(document), chunker=FakeChunker(chunks)).ingest("dummy.py")
+    result = Ingestion(loader=FakeLoader(document), chunker=FakeChunker(chunks)).ingest(
+        "dummy.py"
+    )
 
     assert result.document == document
     assert result.chunks == chunks

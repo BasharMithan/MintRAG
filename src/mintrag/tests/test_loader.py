@@ -8,7 +8,7 @@ from mintrag.ingestions.loader import TextDocumentLoader
 
 def testTextDocumentLoaderLoadsPythonFile(tmp_path):
     filePath = tmp_path / "sample.py"
-    text = "print(\"hello from mintrag\")\n"
+    text = 'print("hello from mintrag")\n'
     filePath.write_bytes(text.encode("utf-8"))
 
     document = TextDocumentLoader().load(str(filePath))

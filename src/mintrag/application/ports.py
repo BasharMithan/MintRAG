@@ -1,4 +1,5 @@
 from typing import Protocol
+
 import numpy as np
 
 from mintrag.models import Chunk, Document
@@ -10,24 +11,26 @@ class DocumentLoader(Protocol):
         ...
 
 
-
 class Chunker(Protocol):
     def split(self, document: Document) -> tuple[Chunk, ...]:
         "Returns orderd chunks with offsets into the document text."
         ...
 
 
-
 class Embedder(Protocol):
     dimentions: int
-    def embeddDocument(self, chunks: tuple[Chunk, ...]) -> list[np.ndarray]: ... # Shape (n, dimension)
-    def embeddQuery(self, text: str) -> np.ndarray: ... # Shape (dimension, n)
 
+    def embeddDocument(
+        self, document: Document
+    ) -> Document: ...  # Shape (n, dimension)
+    def embeddQuery(self, text: str) -> np.ndarray: ...  # Shape (dimension, n)
 
 
 class VectorStore(Protocol):
     def add(self, chunks: list[Chunk], vectors: np.ndarray) -> None: ...
-    def search(self, queryVector: np.ndarray, k: int) -> list: ... # list[RetrievalChunk]
+    def search(
+        self, queryVector: np.ndarray, k: int
+    ) -> list: ...  # list[RetrievalChunk]
     def deteleDocument(self, documentID: int) -> bool: ...
 
     def hasDocument(self, documentID: int) -> bool: ...
