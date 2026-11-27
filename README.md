@@ -6,7 +6,7 @@ retrieving relevant text.
 
 ## Features
 
-- Loads `.txt`, `.md`, `.py`, and `.pdf` documents.
+- Loads `.txt`, `.md`, and `.pdf` documents.
 - Splits text into overlapping character chunks with stable IDs and source
   offsets.
 - Embeds text with Sentence Transformers.
