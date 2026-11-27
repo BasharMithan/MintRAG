@@ -6,7 +6,7 @@ retrieving relevant text.
 
 ## Features
 
-- Loads `.txt`, `.md`, `.py`, and `.pdf` documents.
+- Loads `.txt`, `.md`, and `.pdf` documents.
 - Splits text into overlapping character chunks with stable IDs and source
   offsets.
 - Embeds text with Sentence Transformers.
@@ -67,10 +67,3 @@ Run the test suite with:
 ```powershell
 uv run --group dev pytest
 ```
-
-## Custom exceptions
-
-`MintRAGError` is the base exception. More specific exceptions include
-`DocumentLoadError`, `DocumentNotFoundError`, `UnsupportedDocumentTypeError`,
-`EmptyDocumentError`, `EmbeddingError`, and `InvalidQueryError`. They are also
-exported from the `mintrag` package.
