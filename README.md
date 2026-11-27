@@ -67,10 +67,3 @@ Run the test suite with:
 ```powershell
 uv run --group dev pytest
 ```
-
-## Custom exceptions
-
-`MintRAGError` is the base exception. More specific exceptions include
-`DocumentLoadError`, `DocumentNotFoundError`, `UnsupportedDocumentTypeError`,
-`EmptyDocumentError`, `EmbeddingError`, and `InvalidQueryError`. They are also
-exported from the `mintrag` package.
