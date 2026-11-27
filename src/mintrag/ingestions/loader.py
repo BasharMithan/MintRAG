@@ -4,6 +4,11 @@ from pathlib import Path
 
 from pypdf import PdfReader
 
+from mintrag.customExceptions import (
+    DocumentLoadError,
+    DocumentNotFoundError,
+    UnsupportedDocumentTypeError,
+)
 from mintrag.models import Document
 
 
@@ -12,13 +17,18 @@ class TextDocumentLoader:
 
         supportedExtensions: list[str] = [".txt", ".pdf", ".md", ".py"]
 
-        path = Path(source).expanduser().resolve(strict=True)
+        try:
+            path = Path(source).expanduser().resolve(strict=True)
+        except FileNotFoundError as error:
+            raise DocumentNotFoundError(f"Document does not exist: {source}") from error
 
         if not path.is_file():
-            raise ValueError(f"Source is not a regular file: {path}")
+            raise DocumentLoadError(f"Source is not a regular file: {path}")
 
         if path.suffix.lower() not in supportedExtensions:
-            raise ValueError(f"Unsupported document extension: {path.suffix}")
+            raise UnsupportedDocumentTypeError(
+                f"Unsupported document extension: {path.suffix}"
+            )
 
         if path.suffix.lower() == ".pdf":
             text = "\n".join(

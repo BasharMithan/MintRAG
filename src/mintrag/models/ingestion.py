@@ -17,7 +17,7 @@ class Document(BaseModel):
     source: str
 
     chunks: tuple[Chunk, ...] | None = None
-    embeddings: tuple[float, ...] | None = None
+    embeddings: tuple[tuple[float, ...], ...] | None = None
 
 
 class IngestionResult(BaseModel):

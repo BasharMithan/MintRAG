@@ -5,6 +5,7 @@ from sentence_transformers import SentenceTransformer
 
 from mintrag.application.ports import Embedder
 from mintrag.config.chunking import EmbeddingConfig
+from mintrag.customExceptions import EmptyDocumentError, InvalidQueryError
 from mintrag.models.ingestion import Document
 
 
@@ -16,7 +17,7 @@ class SentenceTransformerEmbedder(Embedder):
 
     def embeddDocument(self, document: Document) -> Document:
         if not document.chunks or len(document.chunks) == 0:
-            raise ValueError("There is no text in the document.")
+            raise EmptyDocumentError("There is no text in the document.")
 
         texts = [chunk.text for chunk in document.chunks]
 
@@ -29,13 +30,15 @@ class SentenceTransformerEmbedder(Embedder):
 
         # results = [_tensor_to_numpy(embedding) for embedding in embeddings]
 
-        document.embeddings = tuple(embeddings)
+        document.embeddings = tuple(
+            tuple(float(value) for value in embedding) for embedding in embeddings
+        )
 
         return document
 
     def embeddQuery(self, text: str) -> np.ndarray[tuple[Any, ...], np.dtype[Any]]:
         if not text.strip():
-            raise ValueError("Query text must not be empty.")
+            raise InvalidQueryError("Query text must not be empty.")
 
         embedding = self.model.encode(
             text,

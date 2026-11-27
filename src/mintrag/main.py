@@ -3,6 +3,7 @@ from langchain_core.vectorstores import InMemoryVectorStore
 from langchain_huggingface import HuggingFaceEmbeddings
 
 from mintrag.config import ChunkingConfig
+from mintrag.customExceptions import EmptyDocumentError
 from mintrag.ingestions.chunker import CharacterChunker
 from mintrag.ingestions.loader import TextDocumentLoader
 
@@ -36,7 +37,7 @@ def main(source: str = "src/mintrag/samples/sample.md") -> None:
     ]
 
     if not documents:
-        raise ValueError("The document contains no text chunks.")
+        raise EmptyDocumentError("The document contains no text chunks.")
 
     vector_store.add_documents(
         documents=documents,
